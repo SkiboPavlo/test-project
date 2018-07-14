@@ -3,4 +3,12 @@ class Post < ApplicationRecord
 
   belongs_to :category
   has_many :comments, as: :commentable
+
+  validate :image_size_validation
+
+  private
+
+  def image_size_validation
+    errors[:file] << "should be less than 2Mb" if file.size > 2.megabytes
+  end
 end
