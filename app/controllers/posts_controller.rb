@@ -16,7 +16,8 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params)
+    category = Category.find params[:category_id]
+    @post = category.post.build(post_params)
 
     respond_to do |format|
       if @post.save
@@ -50,6 +51,6 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:name, :content, :file)
+      params.require(:post).permit(:name, :content, :file, :category_id)
     end
 end

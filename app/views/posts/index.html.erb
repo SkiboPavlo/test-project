@@ -16,9 +16,11 @@
       <tr>
         <td><%= post.name %></td>
         <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= post.category_id %></td>
+        <td><%= link_to 'Show', category_post_path(post, post.category_id) %></td>
+        <td><%= link_to 'Edit', edit_category_post_path(post, post.category_id) %></td>
+        <td><%= link_to 'Destroy', category_post_path(post, post.category_id), method: :delete,
+                         data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Post', new_post_path %>
+<%#= link_to 'New Post', new_post_path %>

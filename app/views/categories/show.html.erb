@@ -10,5 +10,12 @@
   <%= @category.description %>
 </p>
 
+<p>
+  <strong>Posts:</strong>
+  <%= link_to "#{@category.posts.count}", category_posts_path(@category) %>
+</p>
+
+
+<%= link_to 'All posts', category_posts_path(@category) %>
 <%= link_to 'Edit', edit_category_path(@category) %> |
 <%= link_to 'Back', categories_path %>
