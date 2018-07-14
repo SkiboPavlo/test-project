@@ -2,7 +2,8 @@ class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @category = Category.find params[:category_id]
+    @posts = @category.posts
   end
 
   def show
@@ -17,11 +18,11 @@ class PostsController < ApplicationController
 
   def create
     category = Category.find params[:category_id]
-    @post = category.post.build(post_params)
+    @post = category.posts.build(post_params)
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to category_posts_path, notice: 'Post was successfully created.' }
       else
         format.html { render :new }
       end
