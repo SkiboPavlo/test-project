@@ -1,4 +1,5 @@
-<%= form_with(model: post, local: true) do |f| %>
+<%#= form_with(model: post, local: true) do |f| %>
+<%= form_with(scope: :post, url: category_posts_path, local: true) do |f| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -26,10 +27,10 @@
     <%= f.file_field :file %>
   </div>
 
-  <div class="field">
-    <%= f.label :category_id %>
-    <%= f.collection_select :category_id, Category.all, :name, :description %>
-  </div>
+<!--   <div class="field">
+    <%#= f.label :category_id %>
+    <%#= f.collection_select :category_id, Category.all, :description, :name %>
+  </div> -->
 
   <div class="actions">
     <%= f.submit %>

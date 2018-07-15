@@ -1,0 +1,7 @@
+<h4>Comments</h4>
+  <ul>
+    <% commentable.comments.each do |comment| %>
+      <li><%= comment.author %> - <%= comment.content %></li>
+    <% end %>
+  </ul>
+<br>

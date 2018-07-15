@@ -2,8 +2,11 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @commentable.comments.new comment_params
-    @comment.save
-    redirect_to @commentable, notice: "Your comment was successfully posted"
+    if @comment.save
+      redirect_back fallback_location: root_path, notice: "Your comment was successfully posted"
+    else
+      redirect_back fallback_location: root_path, notice: "Your comment was not posted"
+    end
   end
 
   private

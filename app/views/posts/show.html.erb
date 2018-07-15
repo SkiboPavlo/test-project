@@ -15,5 +15,14 @@
   <%= @post.file %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+<%= render partial: "comments/comments", locals: {commentable: @post} %>
+<br>
+<%= form_for @new_comment, url: category_post_comments_path(@category, @post) do |f| %>
+  <%= f.text_area :author, placeholder: 'Add author' %>
+  <%= f.text_area :content, placeholder: 'Add a comment' %>
+  <%= f.submit %>
+<% end %>
+
+
+<%= link_to 'Edit', edit_category_post_path(@post.category_id, @post) %> |
+<%= link_to 'Back', category_posts_path %>

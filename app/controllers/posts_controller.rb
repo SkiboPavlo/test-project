@@ -7,6 +7,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    @category = Category.find params[:category_id]
+    @post = Post.find params[:id]
+    @new_comment = @post.comments.build
   end
 
   def new
@@ -42,7 +45,8 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path, notice: 'Post
+                    was successfully destroyed.' }
     end
   end
 

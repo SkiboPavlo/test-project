@@ -6,6 +6,8 @@ class CategoriesController < ApplicationController
   end
 
   def show
+    @category = Category.find params[:id]
+    @new_comment = @category.comments.build
   end
 
   def new

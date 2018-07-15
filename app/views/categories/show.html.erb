@@ -14,7 +14,14 @@
   <strong>Posts:</strong>
   <%= link_to "#{@category.posts.count}", category_posts_path(@category) %>
 </p>
+<%= render partial: "comments/comments", locals: {commentable: @category} %>
+<br>
 
+<%= form_for @new_comment, url: category_comments_path(@category) do |f| %>
+  <%= f.text_area :author, placeholder: 'Add author' %>
+  <%= f.text_area :content, placeholder: 'Add a comment' %>
+  <%= f.submit %>
+<% end %>
 
 <%= link_to 'All posts', category_posts_path(@category) %>
 <%= link_to 'Edit', edit_category_path(@category) %> |
